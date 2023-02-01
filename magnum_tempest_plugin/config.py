@@ -29,7 +29,7 @@ MagnumGroup = [
     cfg.StrOpt("docker_storage_driver",
                help="Docker storage driver. Supported: devicemapper, overlay"),
     cfg.StrOpt("image_id",
-               default="fedora-coreos-latest",
+               default="kube-latest",
                help="Image id to be used for ClusterTemplate."),
     cfg.StrOpt("nic_id",
                default="public",
@@ -39,12 +39,12 @@ MagnumGroup = [
                help="Keypair name to use to log into nova instances, the "
                     "keypair is created automatically if not exist."),
     cfg.StrOpt("flavor_id",
-               default="ds2G",
+               default="ds4G",
                help="Flavor id to use for ClusterTemplate."),
     cfg.StrOpt("magnum_url",
                help="Bypass URL for Magnum to skip service catalog lookup"),
     cfg.StrOpt("master_flavor_id",
-               default="ds2G",
+               default="ds4G",
                help="Master flavor id to use for ClusterTemplate."),
     cfg.StrOpt("csr_location",
                default="/opt/stack/new/magnum/default.csr",
@@ -68,4 +68,10 @@ MagnumGroup = [
                default=30,
                help="Timeout(in minutes) to wait for the cluster creation "
                     "finished."),
+    cfg.BoolOpt("master-lb-enabled",
+                default=True,
+                help="Indicates whether created Clusters should have a load \
+                      balancer for master nodes or not."),
+    cfg.DictOpt("labels",
+                default={}),
 ]
