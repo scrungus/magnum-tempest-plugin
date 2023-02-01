@@ -109,7 +109,7 @@ def baymodel_data(**kwargs):
         "tls_disabled": False,
         "network_driver": None,
         "volume_driver": None,
-        "labels": {},
+        "labels": config.Config.labels,
         "public": False,
         "dns_nameserver": "8.8.8.8",
         "flavor_id": data_utils.rand_name('bay'),
@@ -225,7 +225,8 @@ def valid_kubernetes_baymodel(is_public=False):
                          cluster_distro=None,
                          external_network_id=config.Config.nic_id,
                          http_proxy=None, https_proxy=None, no_proxy=None,
-                         network_driver=None, volume_driver=None, labels={},
+                         network_driver=None, volume_driver=None,
+                         labels=config.Config.labels,
                          tls_disabled=False)
 
 
@@ -350,7 +351,7 @@ def cluster_template_data(**kwargs):
         "tls_disabled": False,
         "network_driver": None,
         "volume_driver": None,
-        "labels": {},
+        "labels": config.Config.labels,
         "public": False,
         "dns_nameserver": "8.8.8.8",
         "flavor_id": data_utils.rand_name('cluster'),
@@ -505,7 +506,8 @@ def valid_cluster_template(is_public=False):
         external_network_id=config.Config.nic_id,
         http_proxy=None, https_proxy=None,
         no_proxy=None, network_driver=config.Config.network_driver,
-        volume_driver=None, labels={},
+        volume_driver=None, 
+        labels=config.Config.labels,
         docker_storage_driver=config.Config.docker_storage_driver,
         tls_disabled=False)
 
@@ -556,6 +558,8 @@ def valid_cluster_data(cluster_template_id,
     :param node_count: number of agents for cluster
     :returns: ClusterEntity with generated data
     """
+
+    print("CLUSTER ID ",cluster_template_id)
 
     return cluster_data(cluster_template_id=cluster_template_id, name=name,
                         master_count=master_count, node_count=node_count,
