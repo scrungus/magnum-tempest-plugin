@@ -77,6 +77,8 @@ class ClusterTemplateClient(client.MagnumClient):
         :returns: response object and ClusterTemplateEntity object
         """
 
+        print("MODEL IS:", model)
+
         resp, body = self.post(
             self.cluster_templates_uri(),
             body=model.to_json(), **kwargs)
