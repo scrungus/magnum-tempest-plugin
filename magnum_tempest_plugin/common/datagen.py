@@ -116,7 +116,8 @@ def baymodel_data(**kwargs):
         "master_flavor_id": data_utils.rand_name('bay'),
         "external_network_id": config.Config.nic_id,
         "keypair_id": data_utils.rand_name('bay'),
-        "image_id": data_utils.rand_name('bay')
+        "image_id": data_utils.rand_name('bay'),
+        "master_lb_enabled": config.Config.master_lb_enabled
     }
 
     data.update(kwargs)
@@ -227,6 +228,7 @@ def valid_kubernetes_baymodel(is_public=False):
                          http_proxy=None, https_proxy=None, no_proxy=None,
                          network_driver=None, volume_driver=None,
                          labels=config.Config.labels,
+                         master_lb_enabled=config.Config.master_lb_enabled,
                          tls_disabled=False)
 
 
@@ -358,7 +360,8 @@ def cluster_template_data(**kwargs):
         "master_flavor_id": data_utils.rand_name('cluster'),
         "external_network_id": config.Config.nic_id,
         "keypair_id": data_utils.rand_name('cluster'),
-        "image_id": data_utils.rand_name('cluster')
+        "image_id": data_utils.rand_name('cluster'),
+        "master_lb_enabled": config.Config.master_lb_enabled
     }
 
     data.update(kwargs)
@@ -509,6 +512,7 @@ def valid_cluster_template(is_public=False):
         volume_driver=None, 
         labels=config.Config.labels,
         docker_storage_driver=config.Config.docker_storage_driver,
+        master_lb_enabled=config.Config.master_lb_enabled,
         tls_disabled=False)
 
 
